@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\ModuleLessonsSeacrh */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Module Lessons';
+$this->title = 'Уроки';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="module-lessons-index">
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Module Lessons', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать урок', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

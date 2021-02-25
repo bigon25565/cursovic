@@ -89,6 +89,14 @@ class LessonsController extends Controller
                     'error' => 'Данный кабинет уже занят в это время! Измените урок с занятым кабинетом или выберите другой',
                 ]);
             }
+            if (ModuleLessons::find()->where(['teacher_id' => $model['teacher_id'], 'weekday' => $model['weekday'], 'lesson_order' => $model['lesson_order']])->one()) {
+                return $this->render('create', [
+                    'model' => $model,
+                    'options_groups' => $options_groups,
+                    'options_teachers' => $options_teachers,
+                    'error' => 'Данный пртеподаватель уже занят в это время! Измените урок с занятым преподавателем или выберите другого',
+                ]);
+            }
             $model->save(false);
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -134,6 +142,18 @@ class LessonsController extends Controller
                     'options_groups' => $options_groups,
                     'options_teachers' => $options_teachers,
                     'error' => 'Данный кабинет уже занят в это время! Измените урок с занятым кабинетом или выберите другой',
+                ]);
+            }
+            if (ModuleLessons::find()->where(['teacher_id' => $model['teacher_id'], 'weekday' => $model['weekday'], 'lesson_order' => $model['lesson_order']])->one()) {
+                if (ModuleLessons::find()->where(['teacher_id' => $model['teacher_id'], 'weekday' => $model['weekday'], 'lesson_order' => $model['lesson_order'], 'group_id' => $model['group_id']])) {
+                    $model->save(false);
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+                return $this->render('create', [
+                    'model' => $model,
+                    'options_groups' => $options_groups,
+                    'options_teachers' => $options_teachers,
+                    'error' => 'Данный пртеподаватель уже занят в это время! Измените урок с занятым преподавателем или выберите другого',
                 ]);
             }
             $model->save(false);

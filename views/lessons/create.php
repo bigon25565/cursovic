@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\ModuleLessons */
 
-$this->title = 'Create Module Lessons';
+$this->title = 'Создание урока';
 $this->params['breadcrumbs'][] = ['label' => 'Module Lessons', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
