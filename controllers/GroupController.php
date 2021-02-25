@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\ModuleUsers;
-use app\models\ModuleUsersSeacrh;
+use app\models\ModuleGroup;
+use app\models\ModuleGroupSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * UsersController implements the CRUD actions for ModuleUsers model.
+ * GroupController implements the CRUD actions for ModuleGroup model.
  */
-class UsersController extends Controller
+class GroupController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class UsersController extends Controller
     }
 
     /**
-     * Lists all ModuleUsers models.
+     * Lists all ModuleGroup models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ModuleUsersSeacrh();
+        $searchModel = new ModuleGroupSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class UsersController extends Controller
     }
 
     /**
-     * Displays a single ModuleUsers model.
+     * Displays a single ModuleGroup model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,26 +58,15 @@ class UsersController extends Controller
     }
 
     /**
-     * Creates a new ModuleUsers model.
+     * Creates a new ModuleGroup model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ModuleUsers();
+        $model = new ModuleGroup();
 
-        if ($model->load(Yii::$app->request->post())) {
-            if(ModuleUsers::find()->where(['login' => $model['login']])->one())
-            {
-                $error = 'Данный логин занят!';
-                return $this->redirect(['view', ['id' => $model->id, 'error' => $error]]);
-            }
-            if(ModuleUsers::find()->where(['password' => $model['password']])->one())
-            {
-                $error = 'Данный пароль занят!';
-                return $this->render(['create', ['model' => $model, 'error' => $error]]);
-            }
-            $model->save(false);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -87,7 +76,7 @@ class UsersController extends Controller
     }
 
     /**
-     * Updates an existing ModuleUsers model.
+     * Updates an existing ModuleGroup model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -97,20 +86,17 @@ class UsersController extends Controller
     {
         $model = $this->findModel($id);
 
-        $update = 1;
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
-            'update' => $update,
         ]);
     }
 
     /**
-     * Deletes an existing ModuleUsers model.
+     * Deletes an existing ModuleGroup model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -124,15 +110,15 @@ class UsersController extends Controller
     }
 
     /**
-     * Finds the ModuleUsers model based on its primary key value.
+     * Finds the ModuleGroup model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ModuleUsers the loaded model
+     * @return ModuleGroup the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ModuleUsers::findOne($id)) !== null) {
+        if (($model = ModuleGroup::findOne($id)) !== null) {
             return $model;
         }
 

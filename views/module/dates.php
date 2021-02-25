@@ -13,7 +13,7 @@ use app\models\ModuleUsers;
 	        'enctype' => 'multipart/form-data'
 	    ],
 	]);
-	echo $form->field($model, 'number')->dropDownList($options);
+	echo $form->field($model, 'number')->dropDownList($options)->label('Номер группы');
 	echo Html::submitButton('Подтвердить', ['class' => 'btn btn-primary']);
 	if ($_SESSION['role'] == 1) {
 		echo '<a class="btn btn-success" href="http://basic/lessons/index">Редактировать</a>';

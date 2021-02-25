@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ModuleUsersSeacrh */
+/* @var $searchModel app\models\ModuleGroupSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Список Пользователей';
+$this->title = 'Список групп';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="module-users-index">
+<div class="module-group-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Создать пользователя', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать группу', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,12 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            ['attribute' => 'group_id', 'label' => 'Группа'],
-            ['attribute' => 'FIO', 'label' => 'ФИО'],
-            ['attribute' => 'mail', 'label' => 'Почта'],
-            ['attribute' => 'role', 'label' => 'Роль'],
-            //'login',
-            //'password',
+            ['attribute' => 'id'],
+            ['attribute' => 'number', 'label' => 'Номер'],
+            ['attribute' => 'spec', 'label' => 'Специальность'],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -15,9 +15,8 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'group_id') ?>
+    <?= $form->field($model, 'group_id')->label('Группа') ?>
 
     <?= $form->field($model, 'FIO') ?>
 
@@ -30,8 +29,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'password') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Найти', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Обновить', ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

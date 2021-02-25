@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\ModuleUsers */
 
-$this->title = 'Create Module Users';
+$this->title = 'Создание пользователя';
 $this->params['breadcrumbs'][] = ['label' => 'Module Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'error' => $error,
     ]) ?>
 
 </div>
