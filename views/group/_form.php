@@ -17,6 +17,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'spec')->textInput(['maxlength' => true])->label('Специальность') ?>
 
     <div class="form-group">
+    	<?= $error ?>
         <?= Html::submitButton('Создать', ['class' => 'btn btn-success']) ?>
     </div>
 

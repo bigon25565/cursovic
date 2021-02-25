@@ -66,7 +66,17 @@ class GroupController extends Controller
     {
         $model = new ModuleGroup();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+        if ($model->load(Yii::$app->request->post())) {
+            if(ModuleGroup::find()->where(['number' => $model['number']]))
+            {
+                $error = 'Данный номер уже занят';
+                return $this->render('create', [
+                    'model' => $model,
+                    'error' => $error,
+                ]);
+            }
+            $model->save(false);
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -86,7 +96,16 @@ class GroupController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            if(ModuleGroup::find()->where(['number' => $model['number']]))
+            {
+                $error = 'Данный номер уже занят';
+                return $this->render('create', [
+                    'model' => $model,
+                    'error' => $error,
+                ]);
+            }
+            $model->save(false);
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
